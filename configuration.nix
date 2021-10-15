@@ -154,6 +154,8 @@
     siji
   ];
   home-manager.users.colinramsay = { pkgs, ... }: {
+    services.flameshot.enable = true;
+
     xsession.pointerCursor = {
       package = pkgs.gnome3.adwaita-icon-theme;
       name = "Adwaita";
@@ -202,6 +204,7 @@
         i3GapsSupport = true;
       };
     in [
+      flameshot
       remmina
       freerdp
       filezilla
