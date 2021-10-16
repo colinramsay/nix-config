@@ -6,6 +6,11 @@
 
 {
 
+  # This allows the keychron 6 function keys to work w/ fn2 pressed
+  boot.kernelParams = [
+    "hid_apple.fnmode=0"
+  ];
+
   nixpkgs.overlays = [
     (self: super: {
       picom = super.picom.overrideAttrs (old: {
