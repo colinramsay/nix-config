@@ -209,6 +209,7 @@
         i3GapsSupport = true;
       };
     in [
+      discord
       flameshot
       remmina
       freerdp
