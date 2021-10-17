@@ -6,9 +6,21 @@
 
 {
 
+  boot.loader.grub.efiSupport = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.useOSProber = true;
+
   # This allows the keychron 6 function keys to work w/ fn2 pressed
   boot.kernelParams = [
     "hid_apple.fnmode=0"
+
+    # https://wiki.archlinux.org/title/silent_boot
+    "quiet"
+    "loglevel=3"
+    "rd.systemd.show_status=auto"
+    "rd.udev.log_level=3"
   ];
 
   nixpkgs.overlays = [
@@ -85,18 +97,6 @@
     ./hardware-configuration.nix
     <home-manager/nixos>
   ];
-
-  # dont use systemd-boot as we want grub
-  boot.loader.systemd-boot.enable = false;
-
-  # don't fiddle with anything
-  boot.loader.efi.canTouchEfiVariables = false;
-
-  # go go grub - without this things go weird
-  boot.loader.grub.enable = true;
-
-  # dont install grub
-  boot.loader.grub.device = "nodev";
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -209,6 +209,7 @@
         i3GapsSupport = true;
       };
     in [
+      vlc
       discord
       flameshot
       remmina
