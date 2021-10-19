@@ -5,18 +5,29 @@
 { config, pkgs, ... }:
 
 {
+  # go go grub
+  boot.loader.grub.enable = true;
 
+  # dont install grub to a device as its already installed
+  boot.loader.grub.device = "nodev";
+  
+  # find windows
+  boot.loader.grub.useOSProber = true;
+  
+  # remove nixos splash image
+  boot.loader.grub.splashImage = null;
+
+  # needed?
   boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
 
-  # This allows the keychron 6 function keys to work w/ fn2 pressed
   boot.kernelParams = [
+    # This allows the keychron 6 function keys to work w/ fn2 pressed
     "hid_apple.fnmode=0"
 
     # https://wiki.archlinux.org/title/silent_boot
+    # doesn't entirely work due to:
+    # https://github.com/NixOS/nixpkgs/issues/32555
     "quiet"
     "loglevel=3"
     "rd.systemd.show_status=auto"
@@ -54,6 +65,7 @@
       shellAliases = {
         la = "ls -la";
         renix = "sudo nixos-rebuild switch";
+        upnix = "sudo nix-channel --update && sudo nixos-rebuild switch";
       };
       ohMyZsh = {
         enable = true;
@@ -108,7 +120,7 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-
+  networking.networkmanager.enable = true;
   networking.interfaces.enp8s0.useDHCP = true;
 
   # Select internationalisation properties.
@@ -209,34 +221,37 @@
         i3GapsSupport = true;
       };
     in [
-      vlc
-      discord
-      flameshot
-      remmina
-      freerdp
-      filezilla
-      evince
+      _1password-gui
+      _1password
       dbeaver
-      jq
+      discord
+      docker-compose
+      evince
+      filezilla
+      firefox
+      flameshot
+      freerdp
+      gnome.gnome-disk-utility
+      gnome3.adwaita-icon-theme
+      heroku
       hsetroot
-      nixfmt
-      picom
-      polybar
+      jq
       killall
+      nixfmt
+      openvpn
+      pavucontrol
+      picom
+      polkit_gnome
+      networkmanagerapplet
+      polybar
+      remmina
       rofi
       signal-desktop
-      docker-compose
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      xfce.thunar
-      polkit_gnome
-      wget
-      firefox
-      _1password-gui
+      vlc
       vscode
-      pavucontrol
-      gnome3.adwaita-icon-theme
-      gnome.gnome-disk-utility
-      heroku
+      wget
+      xfce.thunar
     ];
 
   # This value determines the NixOS release from which the default

@@ -80,7 +80,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
+bindsym $mod+Shift+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -214,7 +214,6 @@ gaps bottom 80
 exec --no-startup-id /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 #exec --no-startup-id mate-power-manager 
-#exec --no-startup-id lxsession
 #exec --no-startup-id /usr/bin/dunst
 exec --no-startup-id $HOME/.local/bin/spotlight.sh
 exec --no-startup-id $HOME/.config/polybar/launch.sh
@@ -225,7 +224,7 @@ mode "CAPSLOCK" {
 
 bindsym Caps_Lock mode "CAPSLOCK"
 bindsym $mod+c exec --no-startup-id gsimplecal
-bindsym Ctrl+Shift+p exec --no-startup-id flameshot gui
+bindsym $mod+p exec --no-startup-id flameshot gui
 
 # increase volume
 bindsym F12 exec amixer -c 2 -q set Speaker 5%+ unmute
