@@ -117,7 +117,7 @@
 
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    <home-manager/nixos>
+    #<home-manager/nixos>
   ];
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -235,6 +235,7 @@
       firefox
       flameshot
       freerdp
+      git
       gnome.gnome-disk-utility
       gnome3.adwaita-icon-theme
       heroku
