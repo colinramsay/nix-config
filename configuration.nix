@@ -152,12 +152,6 @@
 
   users.mutableUsers = false;
 
-  fileSystems."/arch" = {
-    device = "/dev/disk/by-uuid/5ca8f695-2c35-48d0-a6d1-8162a8d73e0f";
-    fsType = "ext4";
-    mountPoint = "/mnt/arch";
-  };
-
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/d92e66d1-4eec-435d-8cd1-28bae1f3db95";
     fsType = "ext4";
