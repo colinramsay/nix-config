@@ -246,7 +246,6 @@
       pavucontrol
       picom
       polkit_gnome
-      networkmanagerapplet
       polybar
       remmina
       rofi
