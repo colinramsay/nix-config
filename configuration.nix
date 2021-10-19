@@ -74,7 +74,7 @@
       enable = true;
       shellAliases = {
         la = "ls -la";
-        renix = "sudo nixos-rebuild switch";
+        renix = "sudo nixos-rebuild --flake .# switch";
         upnix = "sudo nix-channel --update && sudo nixos-rebuild switch";
       };
       ohMyZsh = {
@@ -154,8 +154,13 @@
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/d92e66d1-4eec-435d-8cd1-28bae1f3db95";
-    fsType = "ext4";
     mountPoint = "/mnt/data";
+    options = [ "nofail" ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/B6DD-2E6C";
+    mountPoint = "/boot";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
