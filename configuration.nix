@@ -5,6 +5,14 @@
 { config, pkgs, ... }:
 
 {
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+   };
+
+
   # go go grub
   boot.loader.grub.enable = true;
 
