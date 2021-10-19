@@ -45,8 +45,11 @@
   nixpkgs.overlays = [
     (self: super: {
       picom = super.picom.overrideAttrs (old: {
-        src = builtins.fetchTarball {
-          url = "https://github.com/ibhagwan/picom/archive/next.tar.gz";
+        src = super.fetchFromGitHub {
+          owner = "ibhagwan";
+          repo = "picom";
+          rev = "6a3d1354bed9d4c33227944a2331b0e5713668d3";
+          sha256 = "JNbP8NZkHjlcQjSRfPbHdpTFrPO6GSZQ5qzDb0yi+pI=";
         };
       });
 
