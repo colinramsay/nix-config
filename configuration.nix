@@ -67,7 +67,6 @@
 
   programs = {
     steam.enable = true;
-    git.enable = true;
     dconf.enable = true;
     gnome-terminal.enable = true;
 
