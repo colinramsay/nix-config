@@ -195,6 +195,10 @@
       source = ./cfg/home/.local/bin/spotlight.sh;
     };
     home.file.".config/i3/config".source = ./cfg/etc/i3/config;
+
+    home.file.".config/dunst/dunstrc".source =
+      ./cfg/home/.config/dunst/dunstrc;
+
     home.file.".config/polybar/config".source =
       ./cfg/home/.config/polybar/config;
     home.file.".config/picom/picom.conf".source =
@@ -235,6 +239,7 @@
       dbeaver
       discord
       docker-compose
+      dunst
       evince
       filezilla
       firefox
@@ -247,7 +252,9 @@
       hsetroot
       jq
       killall
+      lieer
       nixfmt
+      notmuch
       openvpn
       pavucontrol
       picom
