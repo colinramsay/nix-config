@@ -180,6 +180,80 @@
     siji
   ];
   home-manager.users.colinramsay = { pkgs, ... }: {
+    services.dunst = {
+      enable = true;
+      iconTheme.package = pkgs.gnome3.adwaita-icon-theme;
+      iconTheme.name = "Adwaita";
+      settings = {
+        global = {
+          geometry = "0x4-25+25";
+    indicate_hidden = "yes";
+
+    shrink = "no";
+
+    transparency = 15;
+
+
+    notification_height = 0;
+
+    separator_height = 1;
+          padding = 8;
+          browser = "xdg-open";
+          horizontal_padding = 10;
+          frame_width = 0;
+          frame_color = "#282a36";
+          separator_color = "frame";
+          sort = "yes";
+          idle_threshold = 120;
+          font = "Monospace 10";
+          line_height = 0;
+          dmenu = "/usr/bin/env rofi -dmenu";
+          markup = "full";
+          format = "%s %p\\n%b";
+          alignment = "left";
+          vertical_alignment = "center";
+          show_age_threshold = 60;
+          word_wrap = "yes";
+          ellipsize = "middle";
+          ignore_newline = "no";
+          stack_duplicates = true;
+          hide_duplicate_count = false;
+          show_indicators = "yes";
+          icon_position = "left";
+          min_icon_size = 0;
+          max_icon_size = 64;
+          sticky_history = "yes";
+          history_length = 20;
+          always_run_script = true;
+          title = "Dunst";
+          class = "Dunst";
+          startup_notification = false;
+          verbosity = "mesg";
+          corner_radius = 0;
+          ignore_dbusclose = false;
+          force_xinerama = false;
+          mouse_left_click = "close_current";
+          mouse_middle_click = "do_action";
+          mouse_right_click = "close_all";
+        };
+        urgency_low = {
+          background = "#282a36";
+          foreground = "#6272a4";
+          timeout = 10;
+        };
+
+        urgency_normal = {
+            background = "#282a36";
+            foreground = "#bd93f9";
+            timeout = 10;
+        };
+        urgency_critical = {
+            background = "#ff5555";
+            foreground = "#f8f8f2";
+            timeout = 0;
+        };
+      };
+    };
     services.flameshot.enable = true;
 
     xsession.pointerCursor = {
@@ -195,9 +269,6 @@
       source = ./cfg/home/.local/bin/spotlight.sh;
     };
     home.file.".config/i3/config".source = ./cfg/etc/i3/config;
-
-    home.file.".config/dunst/dunstrc".source =
-      ./cfg/home/.config/dunst/dunstrc;
 
     home.file.".config/polybar/config".source =
       ./cfg/home/.config/polybar/config;
@@ -236,10 +307,10 @@
     in [
       _1password-gui
       _1password
+      alot
       dbeaver
       discord
       docker-compose
-      dunst
       evince
       filezilla
       firefox
@@ -252,9 +323,11 @@
       hsetroot
       jq
       killall
+      libreoffice
       lieer
       nixfmt
       notmuch
+      offlineimap
       openvpn
       pavucontrol
       picom
@@ -266,8 +339,10 @@
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       vlc
       vscode
+      w3m
       wget
       xfce.thunar
+      zoom-us
     ];
 
   # This value determines the NixOS release from which the default

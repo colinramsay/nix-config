@@ -226,6 +226,8 @@ bindsym Caps_Lock mode "CAPSLOCK"
 bindsym $mod+c exec --no-startup-id gsimplecal
 bindsym $mod+p exec --no-startup-id flameshot gui
 
+bindsym ctrl+shift+. exec dunstctl context
+
 # increase volume
 bindsym F12 exec amixer -c 2 -q set Speaker 5%+ unmute
 # decrease volume
