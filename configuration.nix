@@ -303,7 +303,7 @@ systemd.coredump.enable = true;
         i3GapsSupport = true;
       };
     in [
-      amixer
+      pamixer
       google-fonts
       slack
       jump
