@@ -11,8 +11,7 @@
       experimental-features = nix-command flakes
     '';
    };
-environment.enableDebugInfo = true;
-systemd.coredump.enable = true;
+
   # go go grub
   boot.loader.grub.enable = true;
 
@@ -98,6 +97,8 @@ systemd.coredump.enable = true;
     };
     xserver = {
       enable = true;
+      xkbModel  = "macbook78";      
+      layout = "gb";
 
       desktopManager = { xterm.enable = false; };
 
@@ -177,6 +178,7 @@ systemd.coredump.enable = true;
   };
 
   fonts.fonts = with pkgs; [
+    google-fonts
     unifont
     jetbrains-mono
     (nerdfonts.override { fonts = [ "Overpass" ]; })
@@ -303,8 +305,7 @@ systemd.coredump.enable = true;
         i3GapsSupport = true;
       };
     in [
-      pamixer
-      google-fonts
+      alsaUtils
       slack
       jump
       spotify
