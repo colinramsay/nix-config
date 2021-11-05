@@ -31,13 +31,13 @@ show_indicators = yes
 icon_position = left
 sticky_history = yes
 history_length = 20
-browser = /usr/bin/firefox -new-tab
+browser = /usr/bin/env firefox -new-tab
 always_run_script = true
 title = Dunst
 class = Dunst
 progress_bar = yes
 transparency = 10
-dmenu = /usr/bin/rofi -dmenu -p dunst:
+dmenu = /usr/bin/env rofi -dmenu -p dunst:
 
 icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
 

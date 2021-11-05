@@ -218,15 +218,10 @@ exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 exec --no-startup-id $HOME/.local/bin/spotlight.sh
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
-mode "CAPSLOCK" {
-    bindsym Caps_Lock mode "default"
-}
-
-bindsym Caps_Lock mode "CAPSLOCK"
 bindsym $mod+c exec --no-startup-id gsimplecal
 bindsym $mod+p exec --no-startup-id flameshot gui
 
-bindsym ctrl+shift+. exec dunstctl context
+bindsym $mod+Shift+period exec dunstctl context
 
 # increase volume
 bindsym F12 exec amixer -c 2 -q set Speaker 5%+ unmute
@@ -240,3 +235,6 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 focus_on_window_activation focus
+
+bindsym $mod+minus move scratchpad
+bindsym $mod+Shift+minus scratchpad show

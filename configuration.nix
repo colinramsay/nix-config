@@ -11,8 +11,8 @@
       experimental-features = nix-command flakes
     '';
    };
-
-
+environment.enableDebugInfo = true;
+systemd.coredump.enable = true;
   # go go grub
   boot.loader.grub.enable = true;
 
@@ -64,6 +64,9 @@
   security.polkit.enable = true;
 
   virtualisation.docker.enable = true;
+
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   programs = {
     steam.enable = true;
@@ -134,7 +137,7 @@
   networking.interfaces.enp8s0.useDHCP = true;
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -187,16 +190,11 @@
       settings = {
         global = {
           geometry = "0x4-25+25";
-    indicate_hidden = "yes";
-
-    shrink = "no";
-
-    transparency = 15;
-
-
-    notification_height = 0;
-
-    separator_height = 1;
+          indicate_hidden = "yes";
+          shrink = "no";
+          transparency = 15;
+          notification_height = 0;
+          separator_height = 1;
           padding = 8;
           browser = "xdg-open";
           horizontal_padding = 10;
@@ -204,10 +202,10 @@
           frame_color = "#282a36";
           separator_color = "frame";
           sort = "yes";
-          idle_threshold = 120;
+          idle_threshold = 30;
           font = "Monospace 10";
           line_height = 0;
-          dmenu = "/usr/bin/env rofi -dmenu";
+          dmenu = "/run/current-system/sw/bin/rofi -dmenu";
           markup = "full";
           format = "%s %p\\n%b";
           alignment = "left";
@@ -239,16 +237,16 @@
         urgency_low = {
           background = "#282a36";
           foreground = "#6272a4";
-          timeout = 10;
+          timeout = 15;
         };
 
         urgency_normal = {
             background = "#282a36";
             foreground = "#bd93f9";
-            timeout = 10;
+            timeout = 45;
         };
         urgency_critical = {
-            background = "#ff5555";
+            background = "#001042";
             foreground = "#f8f8f2";
             timeout = 0;
         };
@@ -305,6 +303,12 @@
         i3GapsSupport = true;
       };
     in [
+      amixer
+      google-fonts
+      slack
+      jump
+      spotify
+      nix-index
       _1password-gui
       _1password
       alot
@@ -312,6 +316,7 @@
       discord
       docker-compose
       evince
+      feh
       filezilla
       firefox
       flameshot
@@ -339,6 +344,7 @@
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       vlc
       vscode
+      ungoogled-chromium
       w3m
       wget
       xfce.thunar
