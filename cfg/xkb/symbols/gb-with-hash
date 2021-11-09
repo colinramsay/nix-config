@@ -1,0 +1,5 @@
+xkb_symbols "gb-with-hash"
+{
+  include "pc+macintosh_vndr/gb+inet(evdev)+capslock(none)"
+  key <LatA> { [ Greek_alpha ] };
+};

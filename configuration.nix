@@ -47,8 +47,8 @@
         src = super.fetchFromGitHub {
           owner = "ibhagwan";
           repo = "picom";
-          rev = "6a3d1354bed9d4c33227944a2331b0e5713668d3";
-          sha256 = "JNbP8NZkHjlcQjSRfPbHdpTFrPO6GSZQ5qzDb0yi+pI=";
+          rev = "c4107bb6cc17773fdc6c48bb2e475ef957513c7a";
+          sha256 = "1hVFBGo4Ieke2T9PqMur1w4D0bz/L3FAvfujY9Zergw=";
         };
       });
 
@@ -76,8 +76,9 @@
       enable = true;
       shellAliases = {
         la = "ls -la";
-        renix = "sudo nixos-rebuild --flake .# switch";
-        upnix = "sudo nix-channel --update && sudo nixos-rebuild switch";
+        edix = "cd /etc/nixos; code .; cd -";
+        renix = "cd /etc/nixos; sudo nixos-rebuild --flake .# switch; cd -";
+        #upnix = "cd /etc/nixos; sudo nix-channel --update && sudo nixos-rebuild switch; cd -";
       };
       ohMyZsh = {
         enable = true;
@@ -350,6 +351,10 @@
       wget
       xfce.thunar
       zoom-us
+      xorg.xev
+      unzip
+      kitty
+      xdotool
     ];
 
   # This value determines the NixOS release from which the default

@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod1
+set $alt Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -41,7 +42,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -209,7 +210,7 @@ default_floating_border pixel 1
 
 gaps inner 40
 gaps outer 0
-gaps bottom 80
+gaps bottom 60
 
 exec --no-startup-id /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
@@ -222,6 +223,7 @@ bindsym $mod+c exec --no-startup-id gsimplecal
 bindsym $mod+p exec --no-startup-id flameshot gui
 
 bindsym $mod+Shift+period exec dunstctl context
+bindsym $mod+period exec dunstctl close
 
 # increase volume
 bindcode 123 exec amixer set Master 5%+ unmute
@@ -238,3 +240,6 @@ focus_on_window_activation focus
 
 bindsym $mod+minus move scratchpad
 bindsym $mod+Shift+minus scratchpad show
+
+#superL/133
+bindsym --release $alt+3 exec --no-startup-id xdotool type "#"
