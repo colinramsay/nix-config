@@ -67,13 +67,13 @@
 
   virtualisation.docker.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.host.enable = false;
+  virtualisation.virtualbox.host.enableExtensionPack = false;
 
   programs = {
     steam.enable = true;
     dconf.enable = true;
-    gnome-terminal.enable = true;
+    gnome-terminal.enable = false;
 
     zsh = {
       enable = true;
@@ -81,7 +81,7 @@
         la = "ls -la";
         edix = "cd /etc/nixos; code .; cd -";
         renix = "cd /etc/nixos; sudo nixos-rebuild --flake .# switch; cd -";
-        #upnix = "cd /etc/nixos; sudo nix-channel --update && sudo nixos-rebuild switch; cd -";
+        upnix = "cd /etc/nixos; sudo nix flake update && sudo nixos-rebuild --flake .# switch; cd -";
       };
       ohMyZsh = {
         enable = true;
@@ -182,7 +182,7 @@
   };
 
   fonts.fonts = with pkgs; [
-    google-fonts
+    #google-fonts
     unifont
     jetbrains-mono
     (nerdfonts.override { fonts = [ "Overpass" ]; })
@@ -361,8 +361,6 @@
       legendary-gl
       wineWowPackages.stable
       (winetricks.override { wine = wineWowPackages.staging; })
-      nix-du
-      graphviz
     ];
 
   # This value determines the NixOS release from which the default
