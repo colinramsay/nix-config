@@ -6,8 +6,11 @@
 
 {
   nix = {
+    autoOptimiseStore = true;
     package = pkgs.nixUnstable;
     extraOptions = ''
+      keep-outputs = false
+      keep-derivations = false
       experimental-features = nix-command flakes
     '';
    };
@@ -299,13 +302,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
-
     let
       polybar = pkgs.polybar.override {
         i3Support = true;
         i3GapsSupport = true;
       };
     in [
+      ncdu
       alsaUtils
       slack
       jump
@@ -334,16 +337,16 @@
       lieer
       nixfmt
       notmuch
-      offlineimap
       openvpn
       pavucontrol
+      playerctl
       picom
       polkit_gnome
       polybar
       remmina
       rofi
       signal-desktop
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      vim
       vlc
       vscode
       ungoogled-chromium
@@ -355,6 +358,11 @@
       unzip
       kitty
       xdotool
+      legendary-gl
+      wineWowPackages.stable
+      (winetricks.override { wine = wineWowPackages.staging; })
+      nix-du
+      graphviz
     ];
 
   # This value determines the NixOS release from which the default
