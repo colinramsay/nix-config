@@ -2,9 +2,9 @@
   # the source of your packages
   inputs = {
     # normal nix stuff
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
     # home-manager stuff
-    home-manager.url = "github:nix-community/home-manager/release-21.05";
+    home-manager.url = "github:nix-community/home-manager/release-21.11";
 
     # use the version of nixpkgs we specified above rather than the one HM would ordinarily use
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

@@ -15,6 +15,8 @@
     '';
    };
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # go go grub
   boot.loader.grub.enable = true;
 
@@ -74,26 +76,17 @@
     steam.enable = true;
     dconf.enable = true;
     gnome-terminal.enable = false;
-
-    zsh = {
-      enable = true;
-      shellAliases = {
-        la = "ls -la";
-        edix = "cd /etc/nixos; code .; cd -";
-        renix = "cd /etc/nixos; sudo nixos-rebuild --flake .# switch; cd -";
-        upnix = "cd /etc/nixos; sudo nix flake update && sudo nixos-rebuild --flake .# switch; cd -";
-      };
-      ohMyZsh = {
-        enable = true;
-        plugins = [ "git" ];
-        theme = "robbyrussell";
-      };
-    };
   };
 
   services = {
+    # usb drive support
+    gvfs = {
+      enable = true;
+      package = pkgs.gnome3.gvfs;
+    };
+
     blueman.enable = true;
-    chrony.enable = true;
+    chrony.enable = true; # time server
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -141,6 +134,10 @@
   networking.networkmanager.enable = true;
   networking.interfaces.enp8s0.useDHCP = true;
 
+networking.firewall.allowedTCPPortRanges = [{from = 1714; to = 1764;}];
+networking.firewall.allowedUDPPortRanges = [{from = 1714; to = 1764;}];
+
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
   # console = {
@@ -161,7 +158,7 @@
   users.mutableUsers = false;
 
   fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/d92e66d1-4eec-435d-8cd1-28bae1f3db95";
+    device = "/dev/disk/by-uuid/51b8764a-92e2-4cee-91d8-7d1d4d57fe7d";
     mountPoint = "/mnt/data";
     options = [ "nofail" ];
   };
@@ -189,6 +186,27 @@
     siji
   ];
   home-manager.users.colinramsay = { pkgs, ... }: {
+
+    programs.zsh = {
+      enable = true;
+      # profileExtra = ''
+        #export PATH="$HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/cli-bin:$PATH";
+      #'';
+      shellAliases = {
+        dc = "$HOME/.config/Code/User/globalStorage/ms-vscode-remote.remote-containers/cli-bin/devcontainer open";
+        win = "sudo grub-reboot \"$(grep -i windows /boot/grub/grub.cfg|cut -d\"'\" -f2)\" && sudo reboot";
+        la = "ls -la";
+        edix = "cd /etc/nixos; code .; cd -";
+        renix = "cd /etc/nixos; sudo nixos-rebuild --flake .# switch; cd -";
+        upnix = "cd /etc/nixos; sudo nix flake update && sudo nixos-rebuild --flake .# switch; cd -";
+      };
+       oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" ];
+        theme = "robbyrussell";
+      };
+    };
+
     services.dunst = {
       enable = true;
       iconTheme.package = pkgs.gnome3.adwaita-icon-theme;
@@ -308,6 +326,7 @@
         i3GapsSupport = true;
       };
     in [
+      bottles # wine gui
       ncdu
       alsaUtils
       slack
@@ -317,6 +336,7 @@
       _1password-gui
       _1password
       alot
+      calibre
       dbeaver
       discord
       docker-compose
@@ -327,6 +347,7 @@
       flameshot
       freerdp
       git
+      grub2 # grub-reboot
       gnome.gnome-disk-utility
       gnome3.adwaita-icon-theme
       heroku
@@ -352,7 +373,9 @@
       ungoogled-chromium
       w3m
       wget
-      xfce.thunar
+      (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
+      xfce.xfconf
+      xfce.exo
       zoom-us
       xorg.xev
       unzip
@@ -360,7 +383,8 @@
       xdotool
       legendary-gl
       wineWowPackages.stable
-      (winetricks.override { wine = wineWowPackages.staging; })
+      #(winetricks.override { wine = wineWowPackages.staging; })
+      v4l-utils # webcam tweaks
     ];
 
   # This value determines the NixOS release from which the default

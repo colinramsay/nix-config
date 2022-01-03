@@ -78,7 +78,7 @@ inherit = bar/base
 offset-x = 40%
 width = 20%
 fixed-center = true
-modules-center = temperature filesystem memory cpu alsa date
+modules-center = temperature filesystem memory cpu date
 
 [bar/tray]
 inherit = bar/base
