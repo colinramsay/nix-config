@@ -9,6 +9,15 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+
+#client.focused          #ef6a04 #285577 #ffffff #2e9ef4   #ef6a04
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+#client.background       #ffffff
+
 set $mod Mod1
 set $alt Mod4
 
@@ -205,9 +214,9 @@ bindsym $mod+Shift+e exec thunar
 bindsym $mod+Shift+Return exec firefox
 bindsym $mod+s exec rofi -show drun
 
-default_border pixel 1
-default_floating_border pixel 1
-
+default_border none
+default_floating_border none
+hide_edge_borders none
 gaps inner 40
 gaps outer 0
 gaps bottom 60

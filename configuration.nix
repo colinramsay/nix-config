@@ -15,6 +15,11 @@
     '';
    };
 
+   programs.ssh.extraConfig = ''
+    PubkeyAcceptedAlgorithms +ssh-rsa
+    HostkeyAlgorithms +ssh-rsa
+   '';
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   # go go grub
@@ -326,6 +331,9 @@ networking.firewall.allowedUDPPortRanges = [{from = 1714; to = 1764;}];
         i3GapsSupport = true;
       };
     in [
+      gsimplecal
+      blender
+      gnumake
       bottles # wine gui
       ncdu
       alsaUtils
